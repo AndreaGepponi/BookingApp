@@ -1,18 +1,17 @@
 package DomainModel;
 
 public class Structure {
-    private String Name, Place, Type, Manager;
+    private String Name, Place, Type;
+    private Manager manager;
     private int Rooms, Reviews;
     
-    public Structure(String N, String m, String P, int r, String type){
-        int c = 45;
-        Manager = m;
+    public Structure(String N, Manager m, String P, int r, String type){
+        manager = m;
         Name = N;
         Place = P;
         Reviews = 0;
         Rooms = r;
         Type = type;
-        int id = 0;
     }
 
     public String getName() {
@@ -27,8 +26,8 @@ public class Structure {
     public int getReviews() {
         return Reviews;
     }
-    public String getManager() {
-        return Manager;
+    public Manager getManager() {
+        return manager;
     }
     public String getType(){
         return Type;
