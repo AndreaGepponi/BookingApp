@@ -203,7 +203,7 @@ public class StructureDAO {
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return new Structure(resultSet.getString("name"), manager.getUsername(), resultSet.getString("place"),
+                return new Structure(resultSet.getString("name"), manager, resultSet.getString("place"),
                         rooms.size(), resultSet.getString("type"));
             }
         } catch (SQLException e) {
