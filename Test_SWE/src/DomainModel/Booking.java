@@ -3,11 +3,12 @@ package DomainModel;
 import java.util.Calendar;
 
 public class Booking {
-    private String U, H;
+    private String H;
+    private Customer U;
     private Period P;
     private int nRoom;
 
-    public Booking(String u_name, Calendar s, Calendar e, String h, int id){
+    public Booking(Customer u_name, Calendar s, Calendar e, String h, int id){
         U = u_name;
         P = new Period(s, e);
         H = h;
@@ -16,7 +17,7 @@ public class Booking {
 
     public Booking(){}
 
-    public String getU() {
+    public Customer getU() {
         return U;
     }
     public Period getP() {
@@ -29,7 +30,7 @@ public class Booking {
         return nRoom;
     }
 
-    public void setU(String u) {
+    public void setU(Customer u) {
         U = u;
     }
     public void setP(Calendar S, Calendar E) {
