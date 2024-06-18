@@ -128,7 +128,8 @@ public class Main {
                 case "2" -> handleCustomerProfileAction(customer);
                 case "3" -> { break label; }
                 case "4" -> {CustomerProfileController customerProfileController = new CustomerProfileController(customer);
-                    customerProfileController.deleteProfile(customer.getUsername());}
+                    customerProfileController.deleteProfile(customer.getUsername());
+                            break label;}
                 default -> System.out.println("Invalid input. Please try again.");
             }
 
@@ -553,7 +554,8 @@ public class Main {
                 case "2" -> handleMangerProfileAction(manager);
                 case "3" -> { break label; }
                 case "4" ->{ManagerProfileController managerProfileController = new ManagerProfileController(manager);
-                            managerProfileController.deleteProfile(manager.getUsername());}
+                            managerProfileController.deleteProfile(manager.getUsername());
+                           break label;}
                 default -> System.out.println("Invalid input. Please try again.");
             }
 
