@@ -2,6 +2,7 @@ package ORM;
 
 import DomainModel.Booking;
 import DomainModel.BookingMapper;
+import DomainModel.Customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -107,8 +108,10 @@ public class BookingDAO {
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                CustomerDAO customerDAO = new CustomerDAO();
                 BookingMapper bookingMapper = new BookingMapper();
-                booking = bookingMapper.map(resultSet.getString("users"), calendars[0], calendars[1], resultSet.getString("hotel"), resultSet.getInt("bkid"));
+                Customer concreteCustomer = customerDAO.getUser(resultSet.getString("users"));
+                booking = bookingMapper.map(concreteCustomer, calendars[0], calendars[1], resultSet.getString("hotel"), resultSet.getInt("bkid"));
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
@@ -131,8 +134,10 @@ public class BookingDAO {
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                CustomerDAO customerDAO = new CustomerDAO();
+                Customer concreteCustomer = customerDAO.getUser(resultSet.getString("users"));
                 Calendar [] calendars = stringToCalendars(resultSet.getString("period"));
-                bookings.add(new Booking(resultSet.getString("users"),calendars[0], calendars[1], resultSet.getString("hotel"), resultSet.getInt("id")));
+                bookings.add(new Booking(concreteCustomer,calendars[0], calendars[1], resultSet.getString("hotel"), resultSet.getInt("id")));
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
@@ -155,8 +160,10 @@ public class BookingDAO {
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                CustomerDAO customerDAO = new CustomerDAO();
+                Customer concreteCustomer = customerDAO.getUser(resultSet.getString("users"));
                 Calendar [] calendars = stringToCalendars(resultSet.getString("period"));
-                bookings.add(new Booking(resultSet.getString("users"),calendars[0], calendars[1], resultSet.getString("hotel"), resultSet.getInt("id")));
+                bookings.add(new Booking(concreteCustomer,calendars[0], calendars[1], resultSet.getString("hotel"), resultSet.getInt("id")));
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
@@ -179,8 +186,10 @@ public class BookingDAO {
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                CustomerDAO customerDAO = new CustomerDAO();
+                Customer concreteCustomer = customerDAO.getUser(resultSet.getString("users"));
                 Calendar [] calendars = stringToCalendars(resultSet.getString("period"));
-                bookings.add(new Booking(resultSet.getString("users"),calendars[0], calendars[1], resultSet.getString("hotel"), resultSet.getInt("bkid")));
+                bookings.add(new Booking(concreteCustomer,calendars[0], calendars[1], resultSet.getString("hotel"), resultSet.getInt("bkid")));
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
